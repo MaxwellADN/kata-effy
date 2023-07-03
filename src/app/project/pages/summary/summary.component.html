@@ -1,0 +1,21 @@
+<ng-container *ngIf="project">
+    <ng-container *ngIf="project.customer">
+        <h1>Merci {{ project.customer.civility }} {{ project.customer.lastName }} {{ project.customer.firstName }}</h1>
+    </ng-container>
+    
+    <ng-container *ngIf="!project.isHouseOwner || !effyAidAmountIsPositive else owner">
+        <div>
+            Suite aux informations que vous nous avez fourni nous sommes désolé de vous annoncer que vous n'êtes pas éligible a l'aide Effy
+        </div>
+    </ng-container>
+    
+    <ng-template #owner>
+        <div>
+            Suite aux informations que vous nous sommes heureux de vous  annoncer que vous êtes pas éligible a l'aide Effy !
+        </div>
+        <div>
+            Montant de votre aide: {{project.effyAidAmount}}€ 
+        </div>
+        
+    </ng-template>
+</ng-container>

@@ -1,0 +1,45 @@
+<ng-container>
+    <h1>Information du projet</h1>
+
+    <form [formGroup]="projectForm" (ngSubmit)="submit()">
+        <div>
+            <label>Vous êtes: </label>
+            <label>
+                <input type="radio" formControlName="isHouseOwner" [value]="true"> Propriétaire
+            </label>
+            <label>
+                <input type="radio" formControlName="isHouseOwner" [value]="false"> Locataire
+            </label>
+            <div *ngIf="projectForm.get('civility')?.invalid && projectForm.get('civility')?.touched">
+                <small>Ce champ est obligatoire</small>
+            </div>
+        </div>
+
+        <div>
+            <label>Nombre de personnes dans le foyer: </label>
+            <input type="number" formControlName="numberOfPeopleHousehold">
+            <div *ngIf="numberOfPeopleHouseholdFormControl.invalid && numberOfPeopleHouseholdFormControl.touched">
+                <small>Le nombre de personne dans le foyer et doit être supérieur ou égale a 1</small>
+            </div>
+        </div>
+
+        <div>
+            <label>Les revenus du foyer: </label>
+            <input type="number" formControlName="householdIncome">
+            <div *ngIf="householdIncomeFormControl.invalid && householdIncomeFormControl.touched">
+                <small>Vous devez renseigner les revenues du foyer. Ils doivent être compris entre 10k et 100k</small>
+            </div>
+        </div>
+
+        <div>
+            <label>La surface du bien (m2): </label>
+            <input type="number" formControlName="area">
+            <div *ngIf="areaFormControl.invalid && areaFormControl.touched">
+                <small>La surface est obligatoire et doit être supérieur ou égale à 1</small>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="!projectForm.valid">Suivant</button>
+    </form>
+
+</ng-container>

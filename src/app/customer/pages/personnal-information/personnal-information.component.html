@@ -1,0 +1,53 @@
+<ng-container>
+    <h1>Information du client</h1>
+
+    <form [formGroup]="customerForm" (ngSubmit)="submit()">
+        <div>
+            <label>Civilité</label>
+            <label>
+                <input type="radio" formControlName="civility" value="Monsieur"> Monsieur
+            </label>
+            <label>
+                <input type="radio" formControlName="civility" value="Madame"> Madame
+            </label>
+            <div *ngIf="civilityFormControl.invalid && civilityFormControl.touched">
+                <small>La civilité est obligatoire</small>
+            </div>
+        </div>
+
+        <div>
+            <label>Nom</label>
+            <input type="text" formControlName="lastName">
+            <div *ngIf="lastNameFormControl.invalid && lastNameFormControl.touched">
+                <small>Le nom est obligatoire</small>
+            </div>
+        </div>
+
+        <div>
+            <label>Prénom</label>
+            <input type="text" formControlName="firstName">
+            <div *ngIf="firstNameFormControl.invalid && firstNameFormControl.touched">
+                <small>Le prénom est obligatoire</small>
+            </div>
+        </div>
+
+        <div>
+            <label>Email</label>
+            <input type="email" formControlName="email">
+            <div *ngIf="emailFormControl.invalid && emailFormControl.touched">
+                <small>L'email est obligatoire et doit être valide</small>
+            </div>
+        </div>
+
+        <div>
+            <label>Téléphone</label>
+            <input type="tel" formControlName="phoneNumber">
+            <div *ngIf="phoneNumberControl.invalid && phoneNumberControl.touched">
+                <small>Le numéro de télephone est obligatoire</small>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="!customerForm.valid">Suivant</button>
+    </form>
+
+</ng-container>
